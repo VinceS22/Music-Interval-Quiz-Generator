@@ -1,4 +1,4 @@
-# I'm completely new to ruby and this is my first little learning experience. Be gentle!
+# I'm completely new to ruby, be gentle!
 class QuizGenerator
 	@@naturalNotes = ["A","B","C","D","E","F","G"]
 	@@noteSuffixes = ["#", "b", ""]
@@ -7,22 +7,21 @@ class QuizGenerator
 
 		amountOfQuestions = amountOfQuestionsParam
 		if amountOfQuestions == -1
-			puts "HEYA"
-			puts amountOfQuestions.is_a? Numeric
-			puts amountOfQuestions
-			while !amountOfQuestions.is_a? Numeric || amountOfQuestions == -1
+			while amountOfQuestions == -1
 				puts "Please enter in the amount of questions that you desire"
-				amountOfQuestions = gets.chomp 
+				amountOfQuestions = Integer(gets) rescue -1 
 			end
 		end
 		
-		currentQuestionNumber = 1
-		until currentQuestionNumber > amountOfQuestions
-			firstNote = GenerateRandomNote
-			puts currentQuestionNumber.to_s + ") What interval is " + firstNote + " up to " 
+		(1..amountOfQuestions).each do |currentQuestionNumber|
+			firstNote = GenerateRandomNote()
+			print currentQuestionNumber.to_s + ") What interval is " + firstNote + " up to " 
+			preferredSuffix = ""
 			if @@noteSuffixes.include?(firstNote[-1,1])
-				puts GenerateRandomNote(firstNote[-1,1]) + "?"
+				preferredSuffix = firstNote[-1,1]
 			end
+
+			puts GenerateRandomNote(preferredSuffix) + "?"
 		end
 
 	end
@@ -36,7 +35,7 @@ class QuizGenerator
 		elsif selectedNote == "C" || selectedNote == "F" || preferredSuffix == "#"
 			eligibleSuffixes = eligibleSuffixes - ["b"]
 		end
-		return selectedNote + " " + noteSuffixes[rand(noteSuffixes.length)]
+		return selectedNote + @@noteSuffixes[rand(@@noteSuffixes.length)]
 	end
 end
 
