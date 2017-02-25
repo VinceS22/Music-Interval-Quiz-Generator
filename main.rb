@@ -6,11 +6,9 @@ class QuizGenerator
 	def self.GenerateQuiz (amountOfQuestionsParam=-1, includeIntervals=true)
 
 		amountOfQuestions = amountOfQuestionsParam
-		if amountOfQuestions == -1
-			while amountOfQuestions == -1
+		while amountOfQuestions == -1
 				puts "Please enter in the amount of questions that you desire"
 				amountOfQuestions = Integer(gets) rescue -1 
-			end
 		end
 		
 		(1..amountOfQuestions).each do |currentQuestionNumber|
