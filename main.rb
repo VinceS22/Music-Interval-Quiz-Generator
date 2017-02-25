@@ -7,8 +7,8 @@ class QuizGenerator
 
 		amountOfQuestions = amountOfQuestionsParam
 		while amountOfQuestions == -1
-				puts "Please enter in the amount of questions that you desire"
-				amountOfQuestions = Integer(gets) rescue -1 
+			puts "Please enter in the amount of questions that you desire"
+			amountOfQuestions = Integer(gets) rescue -1 
 		end
 		
 		(1..amountOfQuestions).each do |currentQuestionNumber|
