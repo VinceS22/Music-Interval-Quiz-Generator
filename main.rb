@@ -36,14 +36,15 @@ class QuizGenerator
       secondNote = GenerateRandomNote(preferredSuffix)
 
       # We don't want duplicate questions, so retry.
-      if preventDuplicates && questionsHash[firstNote].include?(secondNote)
-        redo
+      if preventDuplicates 
+        if questionsHash[firstNote].include?(secondNote)
+          redo
+        else
+          questionsHash[firstNote].push(secondNote)
+        end
       end
 
-      questionsHash[firstNote].push(secondNote)
-
       PrintQuestion(currentQuestionNumber, firstNote, secondNote, answerSpaceLines)
-
     end
 
   end
