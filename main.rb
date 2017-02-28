@@ -3,7 +3,7 @@ class QuizGenerator
   def self.generate_quiz (amount_of_q=-1, answer_space_lines=-1, prevent_duplicates=true)
     natural_notes = %w(A B C D E F G)
     note_suffixes = ['#', 'b', '']
-    questions_hash = Hash[natural_notes.product(note_suffixes).map {|note| [note.join(""), []]}]
+    questions_hash = Hash[natural_notes.product(note_suffixes).map {|note| [note.join(''), []]}]
     # Removing the irrelevant notes
     questions_hash.delete('Cb')
     questions_hash.delete('B#')
