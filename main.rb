@@ -1,4 +1,3 @@
-# I'm completely new to ruby, be gentle!
 class QuizGenerator
   def self.generate_quiz (amount_of_q=-1, answer_space_lines=-1, prevent_duplicates=true)
     natural_notes = %w(A B C D E F G)
@@ -9,8 +8,10 @@ class QuizGenerator
     questions_hash.delete('B#')
     questions_hash.delete('E#')
     questions_hash.delete('Fb')
-
+    # Creating file / Replacing the one existing.
+    File.open('Quiz.txt','w')
     amount_of_questions = amount_of_q
+
     while amount_of_questions == -1
       puts 'Please enter in the amount of questions that you desire:'
       amount_of_questions = Integer(gets) rescue -1
@@ -63,11 +64,12 @@ class QuizGenerator
   end
 
   def self.print_question (current_question_num, note1, note2, answer_space_lines)
-    puts current_question_num.to_s + ') What interval is ' + note1 + ' up to ' + note2 + '?'
-
-    (1..answer_space_lines).each do
-      puts ''
-    end
+    File.open('Quiz.txt','a') {|file|
+      file.puts(current_question_num.to_s + ') What interval is ' + note1 + ' up to ' + note2 + '?')
+      (1..answer_space_lines).each do
+        file.puts ''
+      end
+    }
   end
 end
 
