@@ -64,12 +64,12 @@ class QuizGenerator
   end
 
   def self.print_question (current_question_num, note1, note2, answer_space_lines)
-    File.open('Quiz.txt','a') {|file|
+    File.open('Quiz.txt','a') do |file|
       file.puts(current_question_num.to_s + ') What interval is ' + note1 + ' up to ' + note2 + '?')
       (1..answer_space_lines).each do
         file.puts ''
       end
-    }
+    end
   end
 end
 
